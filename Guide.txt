@@ -1,0 +1,59 @@
+Aight vamo hacer una calculadora
+
+
+
+¿Que funciones necesita cumplir una calculadora comun?
+>Sumar, Restar, Dividir, Multiplicar
+>Punto decimal, simbolo = para el resultado, un boton de cancelar.
+> Porcentajes, raiz/potencia cuadrada
+>M+ (Sumar a la memoria), M- (Restar a la memoria), MRC ( Memory recall) => tf is that
+
+Cosas que hacer : 
+>Armar componente boton (DONE)
+>Armar pantalla que muestre numeros (DONE)
+>Armar botones en calculadora(DONE)
+>Armar sistema de memoria (pend)
+>Añadir funcionalidad a los botones(pend)
+>Darle estilo ( probablemente con bootstrap)
+>Poder mostrar un resultado al usar "=" (pend)
+>Hacer la pagina responsive
+
+¿Que hacer ahora?
+Armar funcionalidad del boton "=" 
+
+
+
+Poder setear dos numeros, separados por operadores: (PENDIENTE)
+Ambos numeros se guardan en state.
+El primer numero se va a registrar cuando se toque por primera vez un operador, 
+eliminandolo del contenido que se muestra en la pantalla, guardandolo en estado.
+A su vez en ese momento habrá que actualizar en el inicio del contenido en pantalla el simbolo del operador que se va a utilizar.
+El operador deberia quedar guardado en estado tambien, para futura referencia en la calculacion.
+
+
+
+
+
+¿Para que sirven la M-, M+, MRC?
+Con M+ ingresas el número que está en la pantalla a la memoria de la calculadora. No importa si borras todo o le das a la tecla C, ese número sigue allí hasta que apagues la calculadora. Con M+ puedes seguirle sumando números a lo que está en la memoria, y con M-, le restas. Cuando presionas MRC, traes a la pantalla el número que estaba almacenado en la memoria. Esto sirve para cuando quieres hacer operaciones en las cuales necesitas guardar un resultado por un rato, mientras haces otros cálculos.
+
+Hay otra tecla más, MC, que sirve para borrar lo que está en la memoria.
+
+
+
+
+____________________
+OLD PROBLEMS
+Conflicto en la funcion handleOperador() : 
+La logica parece funcionar solo en la primera  vuelta. 
+Se cumple con la condicion para que se ejecute el primer IF ( que el primer numero sea un string vacio)
+se actualiza el valor del primer numero y se sobreescribe la pantalla con el operador elegido y un espacio.
+
+Al añadir otro numero y querer asignar un nuevo operador, sin embargo, ocurre un problema : 
+La pantalla devuelve el numero guardado como primero y, sin importar si se le asignan valores nuevos o se clickea en el operador, sigue devolviendo ese numero.
+Creo que esto ocurre por un problema en el segundo condicional IF, que siempre va a ser el que se ejecute ya que el NUM1 nunca es un empty string.
+
+setOp2(pantalla.textContent) => Esta linea está mal, porque a este punto pantalla text content incluye espacios y un operador, por tanto no define realmente al numero 2.
+
+SOLUCION: alterar la funcion calcular() para que no actualize la pantalla, sino la pantalla--previa con el primer numero.
+alterar el segundo IF de handleOperador para que se comporte como el primer IF, actualizando la pantalla al operador + " " luego de calcular

@@ -1,0 +1,25 @@
+.calculadora--main{
+    min-width: 200px;
+    min-height: 200px;
+    max-width: fit-content;
+    max-height: fit-content;
+    border: 1px solid black;
+    border-radius: 6px;
+    margin:auto;
+    text-align: center;
+}
+.calculadora--body{
+    border-top: 2px solid black;
+}
+
+.boton{ 
+    width: 19%;
+}
+.boton:nth-of-type(1), .boton:nth-of-type(2), .boton:nth-of-type(3), .boton:nth-of-type(4){
+    width: 24%
+}
+
+.calculadora--pantalla--antes{
+ color: red;
+
+}
