@@ -19,7 +19,9 @@ Cosas que hacer :
 >Hacer la pagina responsive
 
 ¿Que hacer ahora?
-Armar funcionalidad del boton "=" 
+Armar funcionalidad del boton "=" (Resuelto, acordarse de committearlo por si lo otro sale mal),
+
+Arreglar La funcionalidad de la calculadora : (pasar las strings de numeros a NUMEROS para la calculacion)
 
 
 

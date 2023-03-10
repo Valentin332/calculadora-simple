@@ -16,8 +16,9 @@ const valoresBotones = [
 
 const calcBotones = valoresBotones.map((valor,index) => <Boton 
 key={index} 
-handleOperador={handleOperador} 
-handleAgregar={handleAgregar} 
+handleOperador= {handleOperador} 
+handleAgregar= {handleAgregar}
+handleIgual = {handleIgual} 
 valor={valor} 
 />);
 
@@ -35,6 +36,8 @@ if(valor.match(/[0-9]/)){
 function  calcular(primerNum, segundoNum, operador){
    const pantalla = document.querySelector(".calculadora--pantalla");
    const numeroPrevio = document.querySelector(".calculadora--pantalla--antes");
+   console.log(primerNum);
+   console.log(segundoNum);
    let calculado;
    switch(operador){
    case "+" :  
@@ -51,9 +54,9 @@ function  calcular(primerNum, segundoNum, operador){
       break;
    default:console.log("weird shit happn")
    }
+   console.log(calculado)
    setOp1(calculado);
   setOp2("");
-  numeroPrevio.textContent = num1;
    }
 
 function handleOperador(event){
@@ -61,18 +64,31 @@ const valorOperador = event.target.textContent;
 const pantalla = document.querySelector(".calculadora--pantalla");
 const numeroPrevio = document.querySelector(".calculadora--pantalla--antes")
 if(num1 === ""){
-      setOp1(pantalla.textContent);
+      setOp1(  Number(pantalla.textContent) );
       setOperador(valorOperador);
       numeroPrevio.textContent =  pantalla.textContent;
       pantalla.textContent = valorOperador + " ";
 
 } else if (pantalla.textContent !== valorOperador + " ") {
-      setOp2(pantalla.textContent.split(" ")[1]);
-      calcular(num1, num2, operador);
+      setOp2(  Number(pantalla.textContent.split(" ")[1])   );
+      calcular( num1 , num2 , operador );
       setOperador(valorOperador);
+      numeroPrevio.textContent = num1;
       pantalla.textContent = valorOperador + " ";
 } else return
 
+}
+function handleIgual(){
+   const pantalla = document.querySelector(".calculadora--pantalla");
+   const numeroPrevio = document.querySelector(".calculadora--pantalla--antes")
+if(num1 != "" && operador != ""){
+   setOp2(Number(pantalla.textContent.split(" ")[1]));
+   calcular(   num1 , num2 , operador );
+   setOperador("");
+   pantalla.textContent = num1
+   setOp1("")
+   numeroPrevio.textContent = ""  
+} else return   
 }
 
 

@@ -2,7 +2,12 @@ import React from "react"
 
 export default function Boton(props){
     const operadoresRegExp = /^(\+|-|X|÷)/;
-   const handleClick = operadoresRegExp.test(props.valor) ? props.handleOperador : props.handleAgregar;
+ let handleClick 
+
+ if(operadoresRegExp.test(props.valor)){ handleClick = props.handleOperador }
+ else if(props.valor == "="){ handleClick = props.handleIgual }
+ else { handleClick = props.handleAgregar };
+
     return(
         <button onClick={handleClick} type="button" 
         value={props.valor} 
