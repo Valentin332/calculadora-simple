@@ -3,8 +3,7 @@ import Boton from "./components/Boton"
 
 
 export default function App(){
-const [num1, setOp1] = React.useState("");
-const [num2, setOp2] = React.useState("");
+const [num1, setOp1] = React.useState("");;
 const [operador, setOperador] = React.useState("");
 const valoresBotones = [
 "MC","MRC","M-","M+",
@@ -36,8 +35,6 @@ if(valor.match(/[0-9]/)){
 function  calcular(primerNum, segundoNum, operador){
    const pantalla = document.querySelector(".calculadora--pantalla");
    const numeroPrevio = document.querySelector(".calculadora--pantalla--antes");
-   console.log(primerNum);
-   console.log(segundoNum);
    let calculado;
    switch(operador){
    case "+" :  
@@ -54,9 +51,7 @@ function  calcular(primerNum, segundoNum, operador){
       break;
    default:console.log("weird shit happn")
    }
-   console.log(calculado)
-   setOp1(calculado);
-  setOp2("");
+   return calculado;
    }
 
 function handleOperador(event){
@@ -70,10 +65,10 @@ if(num1 === ""){
       pantalla.textContent = valorOperador + " ";
 
 } else if (pantalla.textContent !== valorOperador + " ") {
-      setOp2(  Number(pantalla.textContent.split(" ")[1])   );
-      calcular( num1 , num2 , operador );
+      const num2 = Number(pantalla.textContent.split(" ")[1]);
       setOperador(valorOperador);
-      numeroPrevio.textContent = num1;
+      numeroPrevio.textContent = calcular(num1, num2, operador);
+      setOp1(Number(numeroPrevio.textContent));
       pantalla.textContent = valorOperador + " ";
 } else return
 
@@ -82,11 +77,10 @@ function handleIgual(){
    const pantalla = document.querySelector(".calculadora--pantalla");
    const numeroPrevio = document.querySelector(".calculadora--pantalla--antes")
 if(num1 != "" && operador != ""){
-   setOp2(Number(pantalla.textContent.split(" ")[1]));
-   calcular(   num1 , num2 , operador );
+   const num2 = Number(pantalla.textContent.split(" ")[1]);
+   pantalla.textContent = calcular(num1, num2, operador);
+   setOp1("");
    setOperador("");
-   pantalla.textContent = num1
-   setOp1("")
    numeroPrevio.textContent = ""  
 } else return   
 }
