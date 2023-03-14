@@ -15,13 +15,22 @@ Cosas que hacer :
 >Armar sistema de memoria (pend)
 >Añadir funcionalidad a los botones(pend)
 >Darle estilo ( probablemente con bootstrap)
->Poder mostrar un resultado al usar "=" (pend)
+>Poder mostrar un resultado al usar "=" (DONE)
 >Hacer la pagina responsive
 
 ¿Que hacer ahora?
-Armar funcionalidad del boton "=" (Resuelto, acordarse de committearlo por si lo otro sale mal),
+Armar funcionalidad de operadores secundarios ( Porcentaje, Raiz, Negativo/Positivo)
+=>
+Hacer una unica funcion que identifique el operador usado y aplique un modificador
+¿En que momento aplica el modificador?
+>Negativo/Positivo y Raiz pueden aplicarlo apenas sea utilizado.
+>Porcentaje requiere una referencia a un primer numero del cual sacar el porcentaje.
 
-Arreglar La funcionalidad de la calculadora : (pasar las strings de numeros a NUMEROS para la calculacion)
+!Quizas sea mejor dividirlo en dos funciones. Una para porcentaje
+
+Debugging : 
+Funcion de raiz cuadrada funciona correctamente.
+Funcion de signo  mas y menos funciona SOLO en el primer operador. Segundo presenta errores
 
 
 

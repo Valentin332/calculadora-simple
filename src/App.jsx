@@ -10,14 +10,15 @@ const valoresBotones = [
 "7","8","9","X","÷",
 "4","5","6","-","√",
 "CL","1","2","3","+",
-"CE","0",".","+/-","="
+"CE","0",".","masomenos","="
 ];
 
 const calcBotones = valoresBotones.map((valor,index) => <Boton 
 key={index} 
 handleOperador= {handleOperador} 
 handleAgregar= {handleAgregar}
-handleIgual = {handleIgual} 
+handleIgual = {handleIgual}
+handleOpSecundario = {modificar} 
 valor={valor} 
 />);
 
@@ -31,6 +32,45 @@ if(valor.match(/[0-9]/)){
    pantalla.textContent = pantalla.textContent + ".";
 } else return
    }
+
+function modificar(event){
+ const pantalla = document.querySelector(".calculadora--pantalla");
+ const valor = event.target.textContent;
+
+ if(valor === "√"){
+      if(num1 === ""){
+         pantalla.textContent = Math.sqrt(Number(pantalla.textContent));
+      } else if(pantalla.textContent !== operador + " " | pantalla.textContent !== ""){
+       const oldNumber = pantalla.textContent.split(" ")[1];
+        let numeroCambiado = Math.sqrt(Number(oldNumber));
+         pantalla.textContent = pantalla.textContent.replace(oldNumber, numeroCambiado);
+      } else return
+      }
+
+ if(valor === "masomenos"){
+   if(num1 === ""){
+      //Caso uno
+      console.log("funcion asignada correctamente)")
+   if(/-/.test(pantalla.textContent) == false){
+      pantalla.textContent = "-" + pantalla.textContent;
+   } else if(/-/.test(pantalla.textContent) == true){
+      pantalla.textContent = pantalla.textContent.replace("-","");
+      };
+//Caso dos
+   } else if(pantalla.textContent !== operador + " "){
+      if(/-? -/.test(pantalla.textContent) == false){
+         const numeroViejo = pantalla.textContent.split(" ")[1]
+       const numeroCambiado = "-" + numeroViejo;
+      pantalla.textContent = pantalla.textContent.replace(numeroViejo, numeroCambiado);
+      } else {
+         const numeroViejo = pantalla.textContent.split(" ")[1]
+       const numeroCambiado = numeroViejo.split("-")[1]; 
+       pantalla.textContent = pantalla.textContent.replace(numeroViejo,numeroCambiado);
+      }
+   }
+ 
+}     
+}
 
 function  calcular(primerNum, segundoNum, operador){
    const pantalla = document.querySelector(".calculadora--pantalla");
