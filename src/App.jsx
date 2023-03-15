@@ -5,24 +5,32 @@ import Boton from "./components/Boton"
 export default function App(){
 const [num1, setOp1] = React.useState("");;
 const [operador, setOperador] = React.useState("");
+const [memoria, setMemo] = React.useState("");
 const valoresBotones = [
 "MC","MRC","M-","M+",
 "7","8","9","X","÷",
 "4","5","6","-","√",
-"CL","1","2","3","+",
-"CE","0",".","masomenos","="
+"1","2","3","%","+",
+"CE","0",".","POS/NEG","="
 ];
+console.log(memoria)
 
 const calcBotones = valoresBotones.map((valor,index) => <Boton 
 key={index} 
 handleOperador= {handleOperador} 
 handleAgregar= {handleAgregar}
 handleIgual = {handleIgual}
-handleOpSecundario = {modificar} 
+handleOpSecundario = {modificar}
+handleClear = {clear}
+handleMemoAdd = {agregarMemo}
+handleMemoRest = {restarMemo}
+handleMemoCall = {llamarMemoria}
+handleMemoClear = {limpiarMemoria}
 valor={valor} 
 />);
 
 //Calculator functionalities
+
 function handleAgregar(event){
    const pantalla = document.querySelector(".calculadora--pantalla");
    const valor = event.target.textContent;
@@ -31,7 +39,7 @@ if(valor.match(/[0-9]/)){
 } else if(valor == "." && /\./.test(pantalla.textContent) === false && pantalla.textContent !== ""){
    pantalla.textContent = pantalla.textContent + ".";
 } else return
-   }
+}
 
 function modificar(event){
  const pantalla = document.querySelector(".calculadora--pantalla");
@@ -47,7 +55,7 @@ function modificar(event){
       } else return
       }
 
- if(valor === "masomenos"){
+ if(valor === "POS/NEG"){
    if(num1 === ""){
       //Caso uno
       console.log("funcion asignada correctamente)")
@@ -89,10 +97,13 @@ function  calcular(primerNum, segundoNum, operador){
    case "÷":  
    calculado = primerNum / segundoNum;
       break;
+   case "%":
+   calculado = (primerNum * segundoNum) / 100;
+      break;
    default:console.log("weird shit happn")
    }
    return calculado;
-   }
+}
 
 function handleOperador(event){
 const valorOperador = event.target.textContent;
@@ -113,10 +124,11 @@ if(num1 === ""){
 } else return
 
 }
+
 function handleIgual(){
    const pantalla = document.querySelector(".calculadora--pantalla");
    const numeroPrevio = document.querySelector(".calculadora--pantalla--antes")
-if(num1 != "" && operador != ""){
+if(num1 !== "" && operador != ""){
    const num2 = Number(pantalla.textContent.split(" ")[1]);
    pantalla.textContent = calcular(num1, num2, operador);
    setOp1("");
@@ -124,6 +136,49 @@ if(num1 != "" && operador != ""){
    numeroPrevio.textContent = ""  
 } else return   
 }
+
+function clear(){
+const pantalla = document.querySelector(".calculadora--pantalla");
+const numeroPrevio = document.querySelector(".calculadora--pantalla--antes");
+setOp1("");
+setOperador("");
+pantalla.textContent = "";
+numeroPrevio.textContent = "";
+}
+
+//FUNCIONES DE MEMORIA
+
+function agregarMemo(){
+ const pantalla = document.querySelector(".calculadora--pantalla");
+ if(memoria == ""){
+ if(num1 == ""){ setMemo(Number(pantalla.textContent)) }
+ else if(pantalla.textContent !== operador + " " && operador !== "%"){
+ setMemo(Number(pantalla.textContent.split(" ")[1]))
+ } else return;
+} else {
+  if(num1 == ""){setMemo(oldMemo => oldMemo + Number(pantalla.textContent))}
+  else if(pantalla.textContent !== operador + " " && operador !== "%"){
+   setMemo( oldMemo => oldMemo + Number(pantalla.textContent.split(" ")[1]) )
+  } else return; 
+}};
+
+function restarMemo(){
+   const pantalla = document.querySelector(".calculadora--pantalla");
+   if(memoria !== ""){
+     if(num1 == ""){ setMemo( oldMemo => oldMemo - Number(pantalla.textContent) ) }
+     else if(pantalla.textContent !== operador + " " && operador !== "%"){
+      setMemo( oldMemo => oldMemo - Number(pantalla.textContent.split(" ")[1]) )
+     } 
+   } else return
+};
+
+function llamarMemoria(){
+   const pantalla = document.querySelector(".calculadora--pantalla");
+   clear();
+   pantalla.textContent = memoria;
+};
+
+function limpiarMemoria(){ setMemo("") };
 
 
 return(

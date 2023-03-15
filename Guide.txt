@@ -19,30 +19,8 @@ Cosas que hacer :
 >Hacer la pagina responsive
 
 ¿Que hacer ahora?
-Armar funcionalidad de operadores secundarios ( Porcentaje, Raiz, Negativo/Positivo)
-=>
-Hacer una unica funcion que identifique el operador usado y aplique un modificador
-¿En que momento aplica el modificador?
->Negativo/Positivo y Raiz pueden aplicarlo apenas sea utilizado.
->Porcentaje requiere una referencia a un primer numero del cual sacar el porcentaje.
-
-!Quizas sea mejor dividirlo en dos funciones. Una para porcentaje
-
-Debugging : 
-Funcion de raiz cuadrada funciona correctamente.
-Funcion de signo  mas y menos funciona SOLO en el primer operador. Segundo presenta errores
-
-
-
-Poder setear dos numeros, separados por operadores: (PENDIENTE)
-Ambos numeros se guardan en state.
-El primer numero se va a registrar cuando se toque por primera vez un operador, 
-eliminandolo del contenido que se muestra en la pantalla, guardandolo en estado.
-A su vez en ese momento habrá que actualizar en el inicio del contenido en pantalla el simbolo del operador que se va a utilizar.
-El operador deberia quedar guardado en estado tambien, para futura referencia en la calculacion.
-
-
-
+Botones de memoria (DONE) => Need test
+Analizar posibles botones nuevos(PEND)
 
 
 ¿Para que sirven la M-, M+, MRC?
@@ -68,3 +46,14 @@ setOp2(pantalla.textContent) => Esta linea está mal, porque a este punto pantal
 
 SOLUCION: alterar la funcion calcular() para que no actualize la pantalla, sino la pantalla--previa con el primer numero.
 alterar el segundo IF de handleOperador para que se comporte como el primer IF, actualizando la pantalla al operador + " " luego de calcular
+
+
+Debugging del %  => La operacion de % cuenta dentro de la funcion que resuelve las otras operaciones principales.
+Todas las operaciones principales funcionan en ambos casos donde
+A) se encadena otro operador
+B) se utiliza el boton "="
+
+Sin embargo, % PARECE no funcionar correctamente. 
+Cuenta como operador sin embargo al utilizar RTDO o encadenar otro operador solo devuelve a la pantalla previa el numero ingresado en segundo lugar
+
+SOLUCION : Cambiar en la funcion de operaciones la logica empleada para medir porcentajes. Javascript no tiene un built-in donde calcule "%"
