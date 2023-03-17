@@ -13,7 +13,9 @@ const valoresBotones = [
 "1","2","3","%","+",
 "CE","0",".","POS/NEG","="
 ];
-console.log(memoria)
+const pantallaAntesDisplay = {
+display: num1 !== "" ? "block" : "none",
+}
 
 const calcBotones = valoresBotones.map((valor,index) => <Boton 
 key={index} 
@@ -26,7 +28,8 @@ handleMemoAdd = {agregarMemo}
 handleMemoRest = {restarMemo}
 handleMemoCall = {llamarMemoria}
 handleMemoClear = {limpiarMemoria}
-valor={valor} 
+valor={valor}
+estiloOP= {/[0-9]|CE|\./.test(valor) ? false : true} 
 />);
 
 //Calculator functionalities
@@ -182,12 +185,12 @@ function limpiarMemoria(){ setMemo("") };
 
 
 return(
-<div className="calculadora--main">
-   <h1>App</h1>
-   <h3 className="calculadora--pantalla--antes"></h3>
-   <h3 className="calculadora--pantalla"></h3>
+<div className="calculadora--main mt-4">
+   <h3 style={pantallaAntesDisplay} className="calculadora--pantalla--antes"></h3>
+   <h3 className="calculadora--pantalla mt-2"></h3>
    <div className="calculadora--body container p-1 m-1">
       {calcBotones}
    </div>
+  {memoria !== "" && <h3 className="calculadora--memoria-output">Numero en memoria: {memoria}</h3>} 
 </div>
 )}

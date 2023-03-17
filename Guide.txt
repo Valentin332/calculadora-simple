@@ -12,15 +12,14 @@ Cosas que hacer :
 >Armar componente boton (DONE)
 >Armar pantalla que muestre numeros (DONE)
 >Armar botones en calculadora(DONE)
->Armar sistema de memoria (pend)
->Añadir funcionalidad a los botones(pend)
->Darle estilo ( probablemente con bootstrap)
+>Armar sistema de memoria (DONE)
+>Añadir funcionalidad a los botones(DONE)
+>Darle estilo (DONE)
 >Poder mostrar un resultado al usar "=" (DONE)
->Hacer la pagina responsive
+>Hacer la pagina responsive (DONE)
 
 ¿Que hacer ahora?
-Botones de memoria (DONE) => Need test
-Analizar posibles botones nuevos(PEND)
+Making the page responsive(done i think)
 
 
 ¿Para que sirven la M-, M+, MRC?
